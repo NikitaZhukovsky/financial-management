@@ -13,8 +13,8 @@ class IncomeAdmin(admin.ModelAdmin):
 
 
 class TransactionAdmin(admin.ModelAdmin):
-    list_display = ('category', 'amount', 'date_time')
-    search_fields = ('category', 'amount')
+    list_display = ('category', 'amount', 'date_time', 'payment_method')
+    search_fields = ('category', 'amount', 'payment_method')
 
 
 admin.site.register(Category)
