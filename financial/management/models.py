@@ -14,8 +14,13 @@ class Category(models.Model):
 
 
 class Source(models.Model):
+    STATUSES = (
+        ('Main', 'Main'),
+        ('Additional', 'Additional')
+    )
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
+    status = models.CharField(choices=STATUSES, max_length=100, default='Main')
 
     class Meta:
         verbose_name_plural = "Sources"
