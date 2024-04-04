@@ -22,4 +22,3 @@ admin.site.register(Source, SourceAdmin)
 admin.site.register(Transaction, TransactionAdmin)
 admin.site.register(Income, IncomeAdmin)
 admin.site.register(Balance)
-
