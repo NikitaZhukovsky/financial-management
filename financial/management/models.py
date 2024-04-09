@@ -18,6 +18,7 @@ class Source(models.Model):
         ('Main', 'Main'),
         ('Additional', 'Additional')
     )
+
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     status = models.CharField(choices=STATUSES, max_length=100, default='Main')
@@ -59,7 +60,7 @@ class Income(models.Model):
 
 class Balance(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    current_balance = models.DecimalField(max_digits=20, decimal_places=2)
+    current_balance = models.DecimalField(max_digits=20, decimal_places=2, default=0)
 
     class Meta:
         verbose_name_plural = "Balance"
