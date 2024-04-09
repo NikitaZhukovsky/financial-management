@@ -16,11 +16,11 @@ class SourceSerializer(serializers.ModelSerializer):
 
 
 class IncomeSerializer(serializers.ModelSerializer):
-    source = SourceSerializer(read_only=True)
+    # source = SourceSerializer(read_only=True)
 
     class Meta:
         model = Income
-        fields = ('source', 'amount', 'date_time', 'description')
+        fields = ('id', 'source', 'amount', 'date_time', 'description')
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -32,4 +32,4 @@ class CategorySerializer(serializers.ModelSerializer):
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
-        fields = ('id', 'amount', 'date_time', 'description', 'payment_method')
+        fields = ('id', 'category', 'amount', 'date_time', 'description', 'payment_method')

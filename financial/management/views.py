@@ -36,6 +36,7 @@ class IncomesListView(APIView):
         balance = Balance.objects.get(user=user)
         balance.current_balance += income.amount
         balance.save()
+
         return Response()
 
 
@@ -47,6 +48,18 @@ class TransactionListView(APIView):
         transactions = Transaction.objects.filter(user=user)
         serializer = TransactionSerializer(transactions, many=True)
         return Response(serializer.data)
+
+    def post(self, request):
+        serializer = TransactionSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = request.user
+
+        transaction = serializer.save(user=user)
+
+        balance = Balance.objects.get(user=user)
+        balance.current_balance -= transaction.amount
+        balance.save()
+        return Response()
 
 
 class CategoryListView(ListAPIView):
