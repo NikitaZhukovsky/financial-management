@@ -1,5 +1,6 @@
 from django.db import models
 from users.models import CustomUser
+from django.utils import timezone
 
 
 class Category(models.Model):
@@ -39,12 +40,13 @@ class Transaction(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=20, decimal_places=2)
-    date_time = models.DateTimeField(auto_now_add=True)
+    date = models.DateField(default=timezone.now)
+    time = models.TimeField(default=timezone.now)
     description = models.CharField(max_length=150, blank=True, null=True)
     payment_method = models.CharField(choices=PAYMENT_METHODS, max_length=100, default='Card')
 
     def __str__(self):
-        return f"{self.amount} {self.date_time}"
+        return f"{self.amount} {self.date} {self.time}"
 
 
 class Income(models.Model):

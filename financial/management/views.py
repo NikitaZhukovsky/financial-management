@@ -62,7 +62,7 @@ class TransactionListView(APIView):
         return Response()
 
 
-class CategoryListView(ListAPIView):
+class CategoryListView(APIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = (AllowAny, )

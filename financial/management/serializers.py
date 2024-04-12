@@ -32,4 +32,4 @@ class CategorySerializer(serializers.ModelSerializer):
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
-        fields = ('id', 'category', 'amount', 'date_time', 'description', 'payment_method')
+        fields = ('id', 'category', 'amount', 'date', 'time', 'description', 'payment_method')
