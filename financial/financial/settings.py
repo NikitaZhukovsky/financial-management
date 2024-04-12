@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'users',
     'management',
     'rest_framework',
-    'djoser'
+    'djoser',
+    'django_celery_beat'
 ]
 
 MIDDLEWARE = [
@@ -198,3 +199,7 @@ SWAGGER_SETTINGS = {
     }
 }
 
+
+CELERY_BROKER_URL = f'amqp://guest:guest@localhost'
+CELERY_RESULT_BACKEND = f'rpc://'
+CELERY_BROKER_SCHEDULER = 'django_celery_beat/schedulers:DatabaseScheduler'
