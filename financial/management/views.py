@@ -1,8 +1,9 @@
 from django.db.models import F
-from management.models import Category, Source, Transaction, Income, Balance
+from management.models import Category, Source, Transaction, Income, Balance, UserCategory
 from rest_framework.generics import ListAPIView
 from management.serializers import (CategorySerializer, TransactionSerializer, BalanceSerializer,
-                                    IncomeSerializer)
+                                    IncomeSerializer, UserCategorySerializer, DeleteCustomCategorySerializer,
+                                    SourceSerializer)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -23,8 +24,8 @@ class IncomesListView(APIView):
 
     def get(self, request):
         user = request.user
-        sources = Income.objects.filter(user=user)
-        serializer = IncomeSerializer(sources, many=True)
+        incomes = Income.objects.filter(user=user)
+        serializer = IncomeSerializer(incomes, many=True)
         return Response(serializer.data)
 
     def post(self, request):
@@ -68,6 +69,29 @@ class CategoryListView(ListAPIView):
     permission_classes = (AllowAny, )
 
 
+class CustomCategoryView(APIView):
+
+    def get(self, request):
+        user = request.user
+        custom_categories = UserCategory.objects.filter(user=user)
+        serializer = UserCategorySerializer(custom_categories, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        input_serializer = UserCategorySerializer(data=request.data)
+        input_serializer.is_valid(raise_exception=True)
+        user = request.user
+        custom_categories = input_serializer.save(user=user)
+        return Response()
+
+    def delete(self, request):
+        input_serializer = DeleteCustomCategorySerializer(data=request.data)
+        input_serializer.is_valid(raise_exception=True)
+
+        custom_category = UserCategory.objects.get(id=input_serializer.data["custom_category_id"]).delete()
+        return Response()
+
+
 class CategoryTransactionView(APIView):
     permission_classes = (AllowAny, )
 
@@ -76,3 +100,6 @@ class CategoryTransactionView(APIView):
         queryset = Transaction.objects.filter(user=user, category__id=category_id)
         serializer = TransactionSerializer(queryset, many=True)
         return Response(serializer.data)
+
+
+

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from management.models import Category, Source, Transaction, Income, Balance
+from management.models import Category, Source, Transaction, Income, Balance, UserCategory
 
 
 class SourceAdmin(admin.ModelAdmin):
@@ -18,6 +18,7 @@ class TransactionAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Category)
+admin.site.register(UserCategory)
 admin.site.register(Source, SourceAdmin)
 admin.site.register(Transaction, TransactionAdmin)
 admin.site.register(Income, IncomeAdmin)
