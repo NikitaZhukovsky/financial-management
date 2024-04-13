@@ -28,6 +28,7 @@ Financial management system using DRF
 • Flower  
 • Django-environ  
 • Django-pytest  
+• Prospector  
 • Djoser  
 • Gevent  
 • Matplotlib  
