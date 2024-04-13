@@ -27,6 +27,10 @@ Financial management system using DRF
 • Flower  
 • Django-environ  
 • Django-pytest  
+• Djoser  
+• Gevent  
+• Matplotlib  
+• Reportlab  
 
 # Installation
 Clone the repo with
