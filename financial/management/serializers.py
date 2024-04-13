@@ -16,7 +16,6 @@ class SourceSerializer(serializers.ModelSerializer):
 
 
 class IncomeSerializer(serializers.ModelSerializer):
-    # source = SourceSerializer(read_only=True)
 
     class Meta:
         model = Income
