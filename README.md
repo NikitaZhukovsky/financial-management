@@ -24,6 +24,7 @@ Financial management system using DRF
 • Postman  
 • Django  
 • Django-Rest-Framework  
+• Django-rest-swagger  
 • Flower  
 • Django-environ  
 • Django-pytest  
@@ -31,6 +32,7 @@ Financial management system using DRF
 • Gevent  
 • Matplotlib  
 • Reportlab  
+• drf-yasg==1.21.7  
 
 # Installation
 Clone the repo with
