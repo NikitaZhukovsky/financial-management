@@ -3,15 +3,27 @@ from users.models import CustomUser
 from django.utils import timezone
 
 
-class Category(models.Model):
+class CategoryBase(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
 
     class Meta:
-        verbose_name_plural = "Categories"
+        abstract = True
 
     def __str__(self):
         return f"{self.name}"
+
+
+class Category(CategoryBase):
+    class Meta:
+        verbose_name_plural = "Categories"
+
+
+class UserCategory(CategoryBase):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "Custom Categories"
 
 
 class Source(models.Model):
@@ -19,7 +31,6 @@ class Source(models.Model):
         ('Main', 'Main'),
         ('Additional', 'Additional')
     )
-
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     status = models.CharField(choices=STATUSES, max_length=100, default='Main')
