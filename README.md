@@ -20,8 +20,9 @@ Financial management system using DRF
 • Python3.8+  
 • PostgreSQL database  
 • RabbitMQ  
-• Celery  
 • Postman  
+# PIP INSTALL   
+• Celery  
 • Django  
 • Django-Rest-Framework  
 • Django-rest-swagger  
