@@ -5,11 +5,14 @@ Financial management system using DRF
 
 • You can Add and Delete expense categories   
 • Record your completed transactions  
+• You can view transactions by category  
 • You can add your own sources of incomes  
 • Viewing the current balance  
 • View all transactions  
 • Swagger  
+• Prospector  
 • Celery  
+• Auth Test  
 • Sending monthly transaction statistics in PDF format  
 
 # Requirements:  
