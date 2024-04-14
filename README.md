@@ -6,8 +6,8 @@ Financial management system using DRF
 • You can Add and Delete expense categories   
 • Record your completed transactions  
 • You can View, Add, and Delete sources of income  
-• You can view transactions by category   
-• You can add incomes from various sources  
+• You can View transactions by category   
+• You can Add incomes from various sources  
 • Viewing the current balance  
 • View all transactions  
 • Swagger  
