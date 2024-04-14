@@ -24,6 +24,7 @@ Financial management system using DRF
 • Postman  
 # PIP INSTALL   
 • Celery  
+• Django-celery-beat  
 • Django  
 • Django-Rest-Framework  
 • Django-rest-swagger  
