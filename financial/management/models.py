@@ -31,6 +31,7 @@ class Source(models.Model):
         ('Main', 'Main'),
         ('Additional', 'Additional')
     )
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True, null=True)
     status = models.CharField(choices=STATUSES, max_length=100, default='Main')

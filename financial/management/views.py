@@ -3,7 +3,7 @@ from management.models import Category, Source, Transaction, Income, Balance, Us
 from rest_framework.generics import ListAPIView
 from management.serializers import (CategorySerializer, TransactionSerializer, BalanceSerializer,
                                     IncomeSerializer, UserCategorySerializer, DeleteCustomCategorySerializer,
-                                    SourceSerializer)
+                                    SourceSerializer, DeleteSourceSerializer)
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -17,6 +17,29 @@ class BalanceView(APIView):
         balance = Balance.objects.filter(user=user)
         serializer = BalanceSerializer(balance, many=True)
         return Response(serializer.data)
+
+
+class SourceListView(APIView):
+
+    def get(self, request):
+        user = request.user
+        sources = Source.objects.filter(user=user)
+        serializer = SourceSerializer(sources, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        input_serializer = SourceSerializer(data=request.data)
+        input_serializer.is_valid(raise_exception=True)
+        user = request.user
+        sources = input_serializer.save(user=user)
+        return Response()
+
+    def delete(self, request):
+        input_serializer = DeleteSourceSerializer(data=request.data)
+        input_serializer.is_valid(raise_exception=True)
+
+        sources = Source.objects.get(id=input_serializer.data["source_id"]).delete()
+        return Response()
 
 
 class IncomesListView(APIView):

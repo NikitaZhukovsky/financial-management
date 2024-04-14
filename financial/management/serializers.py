@@ -15,6 +15,10 @@ class SourceSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'status']
 
 
+class DeleteSourceSerializer(serializers.Serializer):
+    source_id = serializers.IntegerField()
+
+
 class IncomeSerializer(serializers.ModelSerializer):
 
     class Meta:
