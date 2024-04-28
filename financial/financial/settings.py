@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'users',
     'management',
     'rest_framework',
-    'djoser'
+    'djoser',
+    'django_celery_beat'
 ]
 
 MIDDLEWARE = [
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'financial.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -186,3 +187,19 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'api_key': {
+            'type': 'apiKey',
+            'description': 'Personal API key',
+            'name': 'Authorization',
+            'in': 'header',
+        }
+    }
+}
+
+
+CELERY_BROKER_URL = f'amqp://guest:guest@localhost'
+CELERY_RESULT_BACKEND = f'rpc://'
+CELERY_BROKER_SCHEDULER = 'django_celery_beat/schedulers:DatabaseScheduler'
