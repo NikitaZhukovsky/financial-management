@@ -23,21 +23,7 @@ Financial management system using DRF
 • RabbitMQ  
 • Postman  
 # PIP INSTALL   
-• Celery  
-• Django-celery-beat  
-• Django  
-• Django-Rest-Framework  
-• Django-rest-swagger  
-• Flower  
-• Django-environ  
-• Django-pytest  
-• Prospector  
-• Djoser  
-• Gevent  
-• Matplotlib  
-• Reportlab  
-• drf-yasg==1.21.7  
-
+• pip install -r requirements.txt  
 # Installation
 Clone the repo with
 
